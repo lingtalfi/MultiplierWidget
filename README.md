@@ -96,6 +96,10 @@ How?
 History Log
 ------------------
         
+- 1.2.0 -- 2018-04-04
+
+    - added onItemAddedAfter callback
+        
 - 1.1.0 -- 2018-04-04
 
     - now handles placeholders of type input

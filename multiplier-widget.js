@@ -32,6 +32,9 @@ if ("undefined" === typeof window.multiplierWidget) {
             getCurrentValue: function (jGui, jMultiplier) {
                 return jMultiplier.val();
             },
+            onItemAddedAfter: function (jItem) {
+
+            }
         }, options);
 
 
@@ -68,6 +71,9 @@ if ("undefined" === typeof window.multiplierWidget) {
                     else {
                         jPlaceHolder.html(value);
                     }
+
+                    o.onItemAddedAfter && o.onItemAddedAfter(jClonedItem);
+
                     return false;
                 });
 
