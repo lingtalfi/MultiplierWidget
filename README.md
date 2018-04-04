@@ -96,6 +96,10 @@ How?
 History Log
 ------------------
         
+- 1.3.1 -- 2018-04-04
+
+    - fix posting the template item when submitting the form
+
 - 1.3.0 -- 2018-04-04
 
     - added onItemAddedBefore callback

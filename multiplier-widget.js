@@ -38,6 +38,8 @@ if ("undefined" === typeof window.multiplierWidget) {
             onItemAddedBefore: function (value) {
                 // check the value here, and return true if the value should be added, or false if it shouldn't
                 return true;
+            },
+            onItemRemovedAfter: function (value, jItem) {
             }
         }, options);
 
@@ -89,8 +91,32 @@ if ("undefined" === typeof window.multiplierWidget) {
                 });
 
                 jGui.on('click.multiplierWidget', '.' + o.deleteBtnClass, function () {
-                    $(this).closest("." + o.itemTemplateClass).remove();
+
+                    var value;
+
+
+                    var _jItemTemplate = $(this).closest("." + o.itemTemplateClass);
+                    var jPlaceHolder = _jItemTemplate.find("." + o.itemValuePlaceHolderClass);
+
+                    if (jPlaceHolder.is('input')) {
+                        value = jPlaceHolder.val();
+                    }
+                    else {
+                        value = jPlaceHolder.html();
+                    }
+                    o.onItemRemovedAfter && o.onItemRemovedAfter(value, _jItemTemplate);
+
+
+                    _jItemTemplate.remove();
                     return false;
+                });
+
+
+                jGui.closest('form').on('submit.multiplierWidget', function () {
+                    var jTemplatePlaceHolder = jItemTemplate.find('.' + o.itemValuePlaceHolderClass);
+                    if(jTemplatePlaceHolder.length){
+                        jTemplatePlaceHolder.removeAttr("name");
+                    }
                 });
 
 
