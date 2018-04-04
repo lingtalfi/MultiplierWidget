@@ -3,7 +3,6 @@
 //----------------------------------------
 if ("undefined" === typeof window.multiplierWidget) {
 
-
     window.multiplierWidget = function (options) {
 
         var zis = this;
@@ -62,7 +61,13 @@ if ("undefined" === typeof window.multiplierWidget) {
                     var value = o.getCurrentValue(jGui, jMultiplier);
                     var jClonedItem = jItemTemplate.clone();
                     jItemsContainer.append(jClonedItem);
-                    jClonedItem.find('.' + o.itemValuePlaceHolderClass).html(value);
+                    var jPlaceHolder = jClonedItem.find('.' + o.itemValuePlaceHolderClass);
+                    if (jPlaceHolder.is("input")) {
+                        jPlaceHolder.val(value);
+                    }
+                    else {
+                        jPlaceHolder.html(value);
+                    }
                     return false;
                 });
 

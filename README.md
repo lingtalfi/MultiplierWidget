@@ -96,6 +96,10 @@ How?
 History Log
 ------------------
         
+- 1.1.0 -- 2018-04-04
+
+    - now handles placeholders of type input
+
 - 1.0.0 -- 2018-04-04
 
     - initial commit
