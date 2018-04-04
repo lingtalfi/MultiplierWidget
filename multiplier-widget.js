@@ -34,6 +34,10 @@ if ("undefined" === typeof window.multiplierWidget) {
             },
             onItemAddedAfter: function (jItem) {
 
+            },
+            onItemAddedBefore: function (value) {
+                // check the value here, and return true if the value should be added, or false if it shouldn't
+                return true;
             }
         }, options);
 
@@ -62,17 +66,24 @@ if ("undefined" === typeof window.multiplierWidget) {
 
                 jAddBtn.on('click', function () {
                     var value = o.getCurrentValue(jGui, jMultiplier);
-                    var jClonedItem = jItemTemplate.clone();
-                    jItemsContainer.append(jClonedItem);
-                    var jPlaceHolder = jClonedItem.find('.' + o.itemValuePlaceHolderClass);
-                    if (jPlaceHolder.is("input")) {
-                        jPlaceHolder.val(value);
-                    }
-                    else {
-                        jPlaceHolder.html(value);
-                    }
 
-                    o.onItemAddedAfter && o.onItemAddedAfter(jClonedItem);
+
+                    var valueIsOk = o.onItemAddedBefore(value);
+
+
+                    if (valueIsOk) {
+                        var jClonedItem = jItemTemplate.clone();
+                        jItemsContainer.append(jClonedItem);
+                        var jPlaceHolder = jClonedItem.find('.' + o.itemValuePlaceHolderClass);
+                        if (jPlaceHolder.is("input")) {
+                            jPlaceHolder.val(value);
+                        }
+                        else {
+                            jPlaceHolder.html(value);
+                        }
+
+                        o.onItemAddedAfter && o.onItemAddedAfter(jClonedItem);
+                    }
 
                     return false;
                 });

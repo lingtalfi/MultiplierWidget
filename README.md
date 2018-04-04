@@ -96,6 +96,10 @@ How?
 History Log
 ------------------
         
+- 1.3.0 -- 2018-04-04
+
+    - added onItemAddedBefore callback
+        
 - 1.2.0 -- 2018-04-04
 
     - added onItemAddedAfter callback
